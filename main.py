@@ -305,6 +305,29 @@ def run_analysis_callback(run_clicks, test_clicks, list_of_contents, list_of_fil
             )
         ])
 
+    # --- Display NEW Summary Statistics Table (for peak with largest area) ---
+    if summary and 'mean_pct_area_of_max_area_peak' in summary:
+        summary_data_max_area = [
+            {'Metric': 'Mean of % Area', 'Value': f"{summary.get('mean_pct_area_of_max_area_peak', 0):.2f}"},
+            {'Metric': 'Std. Dev. of % Area', 'Value': f"{summary.get('std_pct_area_of_max_area_peak', 0):.2f}"},
+        ]
+        output_children.extend([
+            html.H3("Summary for Peak with Largest Area", style={'marginTop': '40px'}),
+            dash_table.DataTable(
+                columns=[
+                    {"name": "Metric", "id": "Metric"},
+                    {"name": "Value", "id": "Value"},
+                ],
+                data=summary_data_max_area,
+                style_cell={'textAlign': 'left', 'fontFamily': 'sans-serif', 'padding': '10px'},
+                style_header={'fontWeight': 'bold', 'backgroundColor': '#f8f9fa'},
+                style_data_conditional=[{
+                    'if': {'column_id': 'Metric'},
+                    'fontWeight': 'bold'
+                }]
+            )
+        ])
+
     # Add the download button for the DOCX report
     if results.get("docx_download_url"):
         output_children.extend([

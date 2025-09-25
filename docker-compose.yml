@@ -1,0 +1,18 @@
+services:
+  app:
+    build: .
+    container_name: cdf_analysis_app
+    ports:
+      - "8000:8000"
+    volumes:
+      # Persist generated reports on the host machine
+      - ./generated_reports:/app/generated_reports
+      # Persist temporary uploads on the host machine
+      - ./temp_uploads:/app/temp_uploads
+      # Mount the test file into the container at the expected path
+      - ./oldfiles/kh18.cdf:/app/test_data/kh18.cdf:ro
+    restart: unless-stopped
+
+volumes:
+  generated_reports:
+  temp_uploads:
