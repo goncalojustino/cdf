@@ -1,0 +1,119 @@
+# cdf13_config.txt — key=value. Lines starting with # are ignored.
+# Definition and allowed values are given per key.
+# This file seeds defaults for cdf13_post3.py via the wrapper.
+# CLI flags override these. Presets override these as well unless overridden again by CLI.
+
+# ---- Detect / Integration knobs ----
+
+snr=2
+# definition: minimum signal-to-noise ratio for peak acceptance (apex on smoothed / noise).
+# allowed values: number (float ≥0).
+
+noise-mode=pre
+# definition: source of noise estimate used in SNR.
+# allowed values: fixed | start | pre
+
+noise-window=0.3
+# definition: time window in minutes for noise estimation when noise-mode=start or pre.
+# allowed values: number (float >0).
+
+smooth=8
+# definition: moving average window size in points for detection smoothing.
+# allowed values: integer (≥1).
+
+min-width-sec=1
+# definition: minimum valley-to-valley peak width in seconds.
+# allowed values: number (float ≥0).
+
+measure=area
+# definition: measurement field used for reject-height; also written as measure_value.
+# allowed values: area | height | sqrt_height
+
+reject-height=0
+# definition: minimum allowed value of the selected measurement (e.g., area if measure=area).
+# allowed values: number (float ≥0).
+
+runtime=32
+# definition: x-axis max time (minutes) for plots produced by post script.
+# allowed values: number (float ≥0).
+
+roi-start=
+# definition: start time (minutes) for region of interest; leave blank to disable.
+# allowed values: number (float) or empty.
+
+roi-end=
+# definition: end time (minutes) for region of interest; leave blank to disable.
+# allowed values: number (float) or empty.
+
+integrator=trapz
+# definition: numerical integrator for area computation.
+# allowed values: trapz | simpson
+
+percent-denominator=all
+# definition: basis for % area; functional equivalent here since only integrated peaks contribute.
+# allowed values: all | roi | idonly
+
+clip-negative=on
+# definition: clip negative (signal - baseline) to zero before integration.
+# allowed values: on | off
+
+baseline-method=valley
+# definition: baseline under each peak.
+# allowed values: valley | tangent
+
+tangent-height-pct=10
+# definition: for baseline-method=tangent, the percent of apex height to define tangent points.
+# allowed values: number (float ≥0).
+
+split-overlaps=on
+# definition: enforce non-overlapping peak segments by truncation.
+# allowed values: on | off
+
+valley-depth-frac=0.0
+# definition: require (apex - max(valleys)) ≥ frac * apex; 0 disables.
+# allowed values: number (float ≥0).
+
+min-prominence=0.0
+# definition: require apex - max(valleys) ≥ absolute threshold; 0 disables.
+# allowed values: number (float ≥0).
+
+subtract-blank=off
+# definition: subtract a blank chromatogram before detection/integration.
+# allowed values: on | off
+
+blank-csv=
+# definition: path to blank CSV (columns time_*, intensity) if subtract-blank=on.
+# allowed values: string path or empty.
+
+blank-scale=1.0
+# definition: scale factor applied to the blank before subtraction.
+# allowed values: number (float).
+
+fill-alpha=0.5
+# definition: opacity of filled peaks in the plot.
+# allowed values: number (float 0–1).
+
+fill-color=#9ecae1
+# definition: color of filled peaks (hex or matplotlib color).
+# allowed values: string color.
+
+baseline-lw=1.2
+# definition: line width of baseline segments in the plot.
+# allowed values: number (float >0).
+
+baseline-color=black
+# definition: color of baseline segments in the plot.
+# allowed values: string color.
+
+# ---- Pass-through strings (optional) ----
+process=
+# definition: extra CLI appended to scripts/cdf13.py.
+# allowed values: any string (flags understood by cdf13.py) or empty.
+
+detect=
+# definition: extra CLI appended to scripts/cdf13_post3.py after wrapper-built flags.
+# allowed values: any string (flags understood by cdf13_post3.py) or empty.
+
+report=
+# definition: extra CLI appended to scripts/cdf13_report2.py.
+# allowed values: any string (flags understood by cdf13_report2.py) or empty.

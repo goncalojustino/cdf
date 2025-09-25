@@ -1,0 +1,13 @@
+Category,Value,ProductID,Region
+Electronics,1500,A101,North
+Books,250,B202,South
+Clothing,80,C303,East
+Electronics,2200,A102,West
+Home Goods,450,D404,North
+Books,120,B203,East
+Clothing,150,C304,South
+Electronics,950,A103,West
+Toys,60,E505,North
+Home Goods,600,D405,South
+Books,310,B204,West
+Clothing,210,C305,East

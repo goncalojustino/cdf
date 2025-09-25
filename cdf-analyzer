@@ -1,0 +1,20 @@
+server {
+    listen 80;
+    server_name your_server_ip;
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/opt/cdf_gunicorn/cdf-analyzer.sock;
+    }
+
+    # Directly serve static assets for better performance
+    location /assets {
+        alias /opt/cdf_gunicorn/assets;
+        expires 1d;
+    }
+
+    # Directly serve generated report downloads
+    location /download/docx/ {
+        alias /opt/cdf_gunicorn/generated_reports/;
+    }
+}

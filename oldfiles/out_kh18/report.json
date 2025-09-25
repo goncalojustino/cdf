@@ -1,0 +1,13 @@
+{
+  "source_file": "kh18.run",
+  "size_bytes": 330525,
+  "tokens_found": 63,
+  "segments_written": 63,
+  "candidate_chromatogram_csv": null,
+  "ew_trace_csv": "out_kh18/kh18_Ew_trace.csv",
+  "metadata_guess": {
+    "vendor": "Varian Progra",
+    "date_like": "?25 May 2021 at 11:43",
+    "method_path": "C:\\star\\methodsPFP\\C18_H+MeCN_32min_flow1.mth"
+  }
+}

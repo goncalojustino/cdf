@@ -1,0 +1,32 @@
+Varian Progra
+EDIRECTORY
+EDetector
+EMonitor
+ERawData
+EErrorLog.001a.0018.0000
+EMethod.001a.0018.0000
+EEventMarkLog.001a.0018.0000
+EErrorLog.002d.0019.0000
+EMethod.002d.0019.0000
+EErrorLog.003e.002c.0000
+EMethod.003e.002c.0000
+EDetectorInfo.003e.002c.0000
+ERunLog.003e.002c.0000
+EGLP0325.002c
+ESamplePrep.002d.0019.0000
+EInjectionLog
+B0325
+LC0807M015
+10.190.70.25
+?25 May 2021 at 11:43
+KH18
+EKH18
+System Control Application
+90.0.641.0
+WinNT 5.1.2600 Service Pack 2
+x86 Family 15 Revision 0407
+Varian Star #1
+C:\star\methodsPFP\C18_H+MeCN_32min_flow1.mth
+c:\s*
+zC:\star\UNTITLED.SMP
+c:\star\data\serv_klivon\20250728\kh18.run

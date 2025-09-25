@@ -1,0 +1,506 @@
+[
+  {
+    "order": 1,
+    "tag": "EDIRECTORY",
+    "start": 55,
+    "end": 101,
+    "size": 46,
+    "dump_base": "001_EDIRECTORY"
+  },
+  {
+    "order": 2,
+    "tag": "EgV",
+    "start": 101,
+    "end": 105,
+    "size": 4,
+    "dump_base": "002_EgV"
+  },
+  {
+    "order": 3,
+    "tag": "EDetector",
+    "start": 105,
+    "end": 155,
+    "size": 50,
+    "dump_base": "003_EDetector"
+  },
+  {
+    "order": 4,
+    "tag": "EMonitor",
+    "start": 155,
+    "end": 201,
+    "size": 46,
+    "dump_base": "004_EMonitor"
+  },
+  {
+    "order": 5,
+    "tag": "EfV",
+    "start": 201,
+    "end": 205,
+    "size": 4,
+    "dump_base": "005_EfV"
+  },
+  {
+    "order": 6,
+    "tag": "ERawData",
+    "start": 205,
+    "end": 251,
+    "size": 46,
+    "dump_base": "006_ERawData"
+  },
+  {
+    "order": 7,
+    "tag": "EfV",
+    "start": 251,
+    "end": 255,
+    "size": 4,
+    "dump_base": "007_EfV"
+  },
+  {
+    "order": 8,
+    "tag": "EErrorLog.001a.0018.0000",
+    "start": 255,
+    "end": 301,
+    "size": 46,
+    "dump_base": "008_EErrorLog.001a.0018.0000"
+  },
+  {
+    "order": 9,
+    "tag": "EfV",
+    "start": 301,
+    "end": 305,
+    "size": 4,
+    "dump_base": "009_EfV"
+  },
+  {
+    "order": 10,
+    "tag": "EMethod.001a.0018.0000",
+    "start": 305,
+    "end": 351,
+    "size": 46,
+    "dump_base": "010_EMethod.001a.0018.0000"
+  },
+  {
+    "order": 11,
+    "tag": "EfV",
+    "start": 351,
+    "end": 355,
+    "size": 4,
+    "dump_base": "011_EfV"
+  },
+  {
+    "order": 12,
+    "tag": "EEventMarkLog.001a.0018.0000",
+    "start": 355,
+    "end": 401,
+    "size": 46,
+    "dump_base": "012_EEventMarkLog.001a.0018.0000"
+  },
+  {
+    "order": 13,
+    "tag": "EfV",
+    "start": 401,
+    "end": 405,
+    "size": 4,
+    "dump_base": "013_EfV"
+  },
+  {
+    "order": 14,
+    "tag": "EErrorLog.002d.0019.0000",
+    "start": 405,
+    "end": 451,
+    "size": 46,
+    "dump_base": "014_EErrorLog.002d.0019.0000"
+  },
+  {
+    "order": 15,
+    "tag": "EfV",
+    "start": 451,
+    "end": 455,
+    "size": 4,
+    "dump_base": "015_EfV"
+  },
+  {
+    "order": 16,
+    "tag": "EMethod.002d.0019.0000",
+    "start": 455,
+    "end": 501,
+    "size": 46,
+    "dump_base": "016_EMethod.002d.0019.0000"
+  },
+  {
+    "order": 17,
+    "tag": "EfV",
+    "start": 501,
+    "end": 505,
+    "size": 4,
+    "dump_base": "017_EfV"
+  },
+  {
+    "order": 18,
+    "tag": "EErrorLog.003e.002c.0000",
+    "start": 505,
+    "end": 551,
+    "size": 46,
+    "dump_base": "018_EErrorLog.003e.002c.0000"
+  },
+  {
+    "order": 19,
+    "tag": "EgV",
+    "start": 551,
+    "end": 555,
+    "size": 4,
+    "dump_base": "019_EgV"
+  },
+  {
+    "order": 20,
+    "tag": "EMethod.003e.002c.0000",
+    "start": 555,
+    "end": 601,
+    "size": 46,
+    "dump_base": "020_EMethod.003e.002c.0000"
+  },
+  {
+    "order": 21,
+    "tag": "EgV",
+    "start": 601,
+    "end": 605,
+    "size": 4,
+    "dump_base": "021_EgV"
+  },
+  {
+    "order": 22,
+    "tag": "EDetectorInfo.003e.002c.0000",
+    "start": 605,
+    "end": 651,
+    "size": 46,
+    "dump_base": "022_EDetectorInfo.003e.002c.0000"
+  },
+  {
+    "order": 23,
+    "tag": "EgV",
+    "start": 651,
+    "end": 655,
+    "size": 4,
+    "dump_base": "023_EgV"
+  },
+  {
+    "order": 24,
+    "tag": "ERunLog.003e.002c.0000",
+    "start": 655,
+    "end": 701,
+    "size": 46,
+    "dump_base": "024_ERunLog.003e.002c.0000"
+  },
+  {
+    "order": 25,
+    "tag": "EgV",
+    "start": 701,
+    "end": 705,
+    "size": 4,
+    "dump_base": "025_EgV"
+  },
+  {
+    "order": 26,
+    "tag": "EGLP0325.002c",
+    "start": 705,
+    "end": 751,
+    "size": 46,
+    "dump_base": "026_EGLP0325.002c"
+  },
+  {
+    "order": 27,
+    "tag": "EgV",
+    "start": 751,
+    "end": 755,
+    "size": 4,
+    "dump_base": "027_EgV"
+  },
+  {
+    "order": 28,
+    "tag": "ESamplePrep.002d.0019.0000",
+    "start": 755,
+    "end": 801,
+    "size": 46,
+    "dump_base": "028_ESamplePrep.002d.0019.0000"
+  },
+  {
+    "order": 29,
+    "tag": "EgV",
+    "start": 801,
+    "end": 805,
+    "size": 4,
+    "dump_base": "029_EgV"
+  },
+  {
+    "order": 30,
+    "tag": "EInjectionLog",
+    "start": 805,
+    "end": 22386,
+    "size": 21581,
+    "dump_base": "030_EInjectionLog"
+  },
+  {
+    "order": 31,
+    "tag": "EL",
+    "start": 22386,
+    "end": 25442,
+    "size": 3056,
+    "dump_base": "031_EL"
+  },
+  {
+    "order": 32,
+    "tag": "E7",
+    "start": 25442,
+    "end": 43538,
+    "size": 18096,
+    "dump_base": "032_E7"
+  },
+  {
+    "order": 33,
+    "tag": "EC",
+    "start": 43538,
+    "end": 47274,
+    "size": 3736,
+    "dump_base": "033_EC"
+  },
+  {
+    "order": 34,
+    "tag": "EA",
+    "start": 47274,
+    "end": 55906,
+    "size": 8632,
+    "dump_base": "034_EA"
+  },
+  {
+    "order": 35,
+    "tag": "EA",
+    "start": 55906,
+    "end": 56370,
+    "size": 464,
+    "dump_base": "035_EA"
+  },
+  {
+    "order": 36,
+    "tag": "EC",
+    "start": 56370,
+    "end": 56778,
+    "size": 408,
+    "dump_base": "036_EC"
+  },
+  {
+    "order": 37,
+    "tag": "EC",
+    "start": 56778,
+    "end": 56786,
+    "size": 8,
+    "dump_base": "037_EC"
+  },
+  {
+    "order": 38,
+    "tag": "EC",
+    "start": 56786,
+    "end": 56794,
+    "size": 8,
+    "dump_base": "038_EC"
+  },
+  {
+    "order": 39,
+    "tag": "EC",
+    "start": 56794,
+    "end": 61386,
+    "size": 4592,
+    "dump_base": "039_EC"
+  },
+  {
+    "order": 40,
+    "tag": "E8",
+    "start": 61386,
+    "end": 65626,
+    "size": 4240,
+    "dump_base": "040_E8"
+  },
+  {
+    "order": 41,
+    "tag": "EA",
+    "start": 65626,
+    "end": 68890,
+    "size": 3264,
+    "dump_base": "041_EA"
+  },
+  {
+    "order": 42,
+    "tag": "ER",
+    "start": 68890,
+    "end": 72498,
+    "size": 3608,
+    "dump_base": "042_ER"
+  },
+  {
+    "order": 43,
+    "tag": "Eb",
+    "start": 72498,
+    "end": 73922,
+    "size": 1424,
+    "dump_base": "043_Eb"
+  },
+  {
+    "order": 44,
+    "tag": "Eh",
+    "start": 73922,
+    "end": 75778,
+    "size": 1856,
+    "dump_base": "044_Eh"
+  },
+  {
+    "order": 45,
+    "tag": "Ek",
+    "start": 75778,
+    "end": 76498,
+    "size": 720,
+    "dump_base": "045_Ek"
+  },
+  {
+    "order": 46,
+    "tag": "Ek",
+    "start": 76498,
+    "end": 77306,
+    "size": 808,
+    "dump_base": "046_Ek"
+  },
+  {
+    "order": 47,
+    "tag": "Ei",
+    "start": 77306,
+    "end": 80402,
+    "size": 3096,
+    "dump_base": "047_Ei"
+  },
+  {
+    "order": 48,
+    "tag": "Ei",
+    "start": 80402,
+    "end": 84074,
+    "size": 3672,
+    "dump_base": "048_Ei"
+  },
+  {
+    "order": 49,
+    "tag": "Ev",
+    "start": 84074,
+    "end": 107322,
+    "size": 23248,
+    "dump_base": "049_Ev"
+  },
+  {
+    "order": 50,
+    "tag": "Ew",
+    "start": 107322,
+    "end": 232170,
+    "size": 124848,
+    "dump_base": "050_Ew"
+  },
+  {
+    "order": 51,
+    "tag": "E4",
+    "start": 232170,
+    "end": 239858,
+    "size": 7688,
+    "dump_base": "051_E4"
+  },
+  {
+    "order": 52,
+    "tag": "Ee",
+    "start": 239858,
+    "end": 245762,
+    "size": 5904,
+    "dump_base": "052_Ee"
+  },
+  {
+    "order": 53,
+    "tag": "EO",
+    "start": 245762,
+    "end": 247442,
+    "size": 1680,
+    "dump_base": "053_EO"
+  },
+  {
+    "order": 54,
+    "tag": "EL",
+    "start": 247442,
+    "end": 248130,
+    "size": 688,
+    "dump_base": "054_EL"
+  },
+  {
+    "order": 55,
+    "tag": "EI",
+    "start": 248130,
+    "end": 248234,
+    "size": 104,
+    "dump_base": "055_EI"
+  },
+  {
+    "order": 56,
+    "tag": "EH",
+    "start": 248234,
+    "end": 248434,
+    "size": 200,
+    "dump_base": "056_EH"
+  },
+  {
+    "order": 57,
+    "tag": "EF",
+    "start": 248434,
+    "end": 249066,
+    "size": 632,
+    "dump_base": "057_EF"
+  },
+  {
+    "order": 58,
+    "tag": "EF",
+    "start": 249066,
+    "end": 250506,
+    "size": 1440,
+    "dump_base": "058_EF"
+  },
+  {
+    "order": 59,
+    "tag": "EA",
+    "start": 250506,
+    "end": 255178,
+    "size": 4672,
+    "dump_base": "059_EA"
+  },
+  {
+    "order": 60,
+    "tag": "E-",
+    "start": 255178,
+    "end": 309866,
+    "size": 54688,
+    "dump_base": "060_E-"
+  },
+  {
+    "order": 61,
+    "tag": "Eb",
+    "start": 309866,
+    "end": 329253,
+    "size": 19387,
+    "dump_base": "061_Eb"
+  },
+  {
+    "order": 62,
+    "tag": "EKH18",
+    "start": 329253,
+    "end": 329937,
+    "size": 684,
+    "dump_base": "062_EKH18"
+  },
+  {
+    "order": 63,
+    "tag": "ED.SMP",
+    "start": 329937,
+    "end": 330525,
+    "size": 588,
+    "dump_base": "063_ED.SMP"
+  }
+]

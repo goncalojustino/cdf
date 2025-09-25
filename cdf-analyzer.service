@@ -1,0 +1,14 @@
+[Unit]
+Description=Gunicorn instance to serve the CDF Analyzer app
+After=network.target
+
+[Service]
+User=goncalo
+Group=www-data
+WorkingDirectory=/opt/cdf_gunicorn
+
+# Explicitly use the python from your conda env to run gunicorn as a module
+ExecStart=/home/goncalo/miniconda3/bin/python -m gunicorn.app.wsgiapp --workers 4 --bind unix:cdf-analyzer.sock -m 007 app:server
+
+[Install]
+WantedBy=multi-user.target

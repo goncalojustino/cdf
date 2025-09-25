@@ -1,0 +1,10 @@
+{
+  "source_csv": "/Users/goncalojustino/Library/CloudStorage/OneDrive-UniversidadedeLisboa/2025_CHEMBIOLAB/CDF/kh18_chromatogram.csv",
+  "time_unit": "AU",
+  "n_points": 38400,
+  "peak_rt": 10.785833494054774,
+  "peak_height": 1.2552138566970823,
+  "auc_trapz": 0.13379990453524127,
+  "fwhm_at_half_height": 0.16495507186739644,
+  "smoothing_window": 1
+}
