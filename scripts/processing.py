@@ -97,6 +97,7 @@ def run_analysis_pipeline(file_paths, experiment_name, options):
     # --- Consolidate results from all runs for the UI ---
     individual_results = []
     largest_peak_areas = []
+    max_pct_area_rows = []
 
     for base, original_path in zip(bases, file_paths):
         # 1. Find and encode the plot image
@@ -116,6 +117,13 @@ def run_analysis_pipeline(file_paths, experiment_name, options):
             # For the summary, find the largest peak's area %
             if not df.empty and 'area_percent' in df.columns:
                 largest_peak_areas.append(df['area_percent'].max())
+
+            # For the new summary table, find the entire row with the max 'pct_area'
+            if not df.empty and 'pct_area' in df.columns:
+                max_row = df.loc[df['pct_area'].idxmax()].copy()
+                max_row['File'] = original_path.name
+                max_pct_area_rows.append(max_row)
+
             
             # Drop the 'measure_value' column as it's not for display
             if "measure_value" in df.columns:
@@ -139,6 +147,24 @@ def run_analysis_pipeline(file_paths, experiment_name, options):
             "n_replicates": len(largest_peak_areas)
         }
 
+    # --- Prepare the new summary table data ---
+    summary_table = {}
+    if max_pct_area_rows:
+        # Create a DataFrame from the collected rows
+        summary_df = pd.DataFrame(max_pct_area_rows)
+        # Reorder columns to have 'File' first
+        cols = ['File'] + [col for col in summary_df.columns if col != 'File']
+        summary_df = summary_df[cols]
+
+        # Prepare data for Dash DataTable
+        summary_table['columns'] = [{"name": i, "id": i} for i in summary_df.columns]
+        summary_table['data'] = summary_df.to_dict('records')
+        # Calculate and add stats for the final row
+        if 'pct_area' in summary_df.columns:
+            mean_pct = summary_df['pct_area'].mean()
+            std_pct = summary_df['pct_area'].std()
+            summary_table['stats_row'] = {'mean': mean_pct, 'std': std_pct}
+
     # 3. Find all generated DOCX reports, merge them, and provide a download URL.
     docx_download_url = None
     report_paths = [BASE_DIR / f"{base}_report.docx" for base in bases]
@@ -148,16 +174,37 @@ def run_analysis_pipeline(file_paths, experiment_name, options):
         final_report_name = f"{experiment_name}_replicates_report.docx"
         final_report_path = run_report_dir / final_report_name
 
+        # Merge reports if more than one exists
+        composer = Composer(Document(existing_reports[0]))
         if len(existing_reports) > 1:
-            # Merge multiple reports into one
-            master_document = Document(existing_reports[0])
-            composer = Composer(master_document)
             for i in range(1, len(existing_reports)):
                 composer.append(Document(existing_reports[i]))
-            composer.save(final_report_path)
-        else:
-            # If only one report, just move it
-            shutil.move(str(existing_reports[0]), final_report_path)
+
+        # --- Create and append the new summary table to the DOCX report ---
+        if summary_table and 'stats_row' in summary_table:
+            summary_doc = Document()
+            summary_doc.add_heading('Peak Summary', level=1)
+            summary_doc.add_paragraph('This table shows the peak with the largest percent area from each replicate.')
+            
+            # Add table
+            table = summary_doc.add_table(rows=1, cols=len(summary_table['columns']))
+            table.style = 'Table Grid'
+            hdr_cells = table.rows[0].cells
+            for i, col_info in enumerate(summary_table['columns']):
+                hdr_cells[i].text = col_info['name']
+
+            # Add data rows
+            for row_data in summary_table['data']:
+                row_cells = table.add_row().cells
+                for i, col_info in enumerate(summary_table['columns']):
+                    row_cells[i].text = str(row_data.get(col_info['id'], ''))
+            
+            # Add summary stat row as text
+            summary_doc.add_paragraph(f"\nMean of % Area: {summary_table['stats_row']['mean']:.2f}")
+            summary_doc.add_paragraph(f"Standard Deviation of % Area: {summary_table['stats_row']['std']:.2f}")
+            composer.append(summary_doc)
+
+        composer.save(final_report_path)
 
         # Clean up the individual report files from the base directory
         for report_file in existing_reports:
@@ -172,5 +219,6 @@ def run_analysis_pipeline(file_paths, experiment_name, options):
     return {
         "individual_results": individual_results,
         "summary_stats": summary_stats,
+        "summary_table": summary_table,
         "docx_download_url": docx_download_url,
     }

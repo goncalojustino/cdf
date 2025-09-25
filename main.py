@@ -305,28 +305,37 @@ def run_analysis_callback(run_clicks, test_clicks, list_of_contents, list_of_fil
             )
         ])
 
-    # --- Display NEW Summary Statistics Table (for peak with largest area) ---
-    if summary and 'mean_pct_area_of_max_area_peak' in summary:
-        summary_data_max_area = [
-            {'Metric': 'Mean of % Area', 'Value': f"{summary.get('mean_pct_area_of_max_area_peak', 0):.2f}"},
-            {'Metric': 'Std. Dev. of % Area', 'Value': f"{summary.get('std_pct_area_of_max_area_peak', 0):.2f}"},
-        ]
+    # --- Display the NEW final summary table ---
+    summary_table = results.get("summary_table")
+    if summary_table and summary_table.get('data'):
+        stats = summary_table['stats_row']
+        # Create the final summary row for the table display
+        summary_row_for_table = {'File': 'Summary'}
+        # Format the pct_area column with mean and std dev
+        summary_row_for_table['pct_area'] = f"{stats['mean']:.2f} (± {stats['std']:.2f})"
+
+        table_data = summary_table['data'] + [summary_row_for_table]
+
         output_children.extend([
-            html.H3("Summary for Peak with Largest Area", style={'marginTop': '40px'}),
+            html.Hr(),
+            html.H3("Peak Summary Table", style={'marginTop': '40px'}),
+            html.P("The table below shows the peak with the largest '% area' from each replicate."),
             dash_table.DataTable(
-                columns=[
-                    {"name": "Metric", "id": "Metric"},
-                    {"name": "Value", "id": "Value"},
-                ],
-                data=summary_data_max_area,
-                style_cell={'textAlign': 'left', 'fontFamily': 'sans-serif', 'padding': '10px'},
-                style_header={'fontWeight': 'bold', 'backgroundColor': '#f8f9fa'},
-                style_data_conditional=[{
-                    'if': {'column_id': 'Metric'},
-                    'fontWeight': 'bold'
-                }]
+                columns=summary_table['columns'],
+                data=table_data,
+                style_cell={'textAlign': 'left', 'fontFamily': 'sans-serif'},
+                style_header={'fontWeight': 'bold'},
+                style_table={'overflowX': 'auto', 'marginTop': '10px'},
+                style_data_conditional=[
+                    {
+                        'if': {'row_index': len(table_data) - 1}, # Target the last 'Summary' row
+                        'backgroundColor': '#f8f9fa',
+                        'fontWeight': 'bold'
+                    }
+                ]
             )
         ])
+
 
     # Add the download button for the DOCX report
     if results.get("docx_download_url"):
