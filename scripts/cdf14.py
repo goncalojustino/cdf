@@ -88,7 +88,7 @@ def plot_and_save(times, intensity, unit,
     ax = fig.add_subplot(1, 1, 1)
 
     # Plot signal
-    ax.plot(times, intensity, color='blue')
+    ax.plot(times, intensity, color='blue', linewidth=0.75)
 
         # Axes crossing at (0,0)
     ax.spines['left'].set_position(('data', 0))
@@ -133,7 +133,11 @@ def plot_and_save(times, intensity, unit,
     # Zoom inset ±1.0 min around peak
     inset_pos = [0.1, 0.6, 0.25, 0.25]
     ax_ins = fig.add_axes(inset_pos)
-    mask = (times >= tr_peak - 1.0) & (times <= tr_peak + 1.0)
+    mask = (times >= tr_peak - 1.0) & (times <= tr_peak + 1.0) # This mask is for the inset plot
+    # Also plot the baseline in the inset if it was subtracted
+    if subtract_baseline:
+        # The baseline is just a flat line at zero in this context
+        ax_ins.plot(times[mask], np.zeros_like(times[mask]), color='orange', linewidth=0.5)
     ax_ins.plot(times[mask], intensity[mask], color='blue')
     ax_ins.set_xlim(tr_peak - 1.0, tr_peak + 1.0)
     ax_ins.set_ylim(-0.1, h_peak * 0.25)

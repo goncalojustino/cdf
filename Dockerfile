@@ -40,5 +40,5 @@ EXPOSE 8000
 # -w 4: Use 4 worker processes. Adjust as needed for your CPU cores.
 # -b 0.0.0.0:8000: Bind to all network interfaces on port 8000.
 # app:server: 'app' is your Python file (app.py), and 'server' is the
-#             WSGI-compatible application object inside it (app.server).
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8000", "app:server"]
+#             WSGI-compatible application object inside it.
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8000", "main:server"]

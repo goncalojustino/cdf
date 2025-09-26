@@ -38,14 +38,14 @@ REPORT= os.path.join(SCRIPTS_DIR, "cdf13_report2.py")
 CONFIG_DEFAULT_PATH = "scripts/cdf13_config.txt"
 
 PRESETS = {
-    "default": {"noise-mode":"pre","noise-window":"0.3","snr":"2","smooth":"8","min-width-sec":"1","measure":"area","reject-height":"0"},
+    "default": {"noise-mode":"pre","noise-window":"0.3","snr":"2","smooth":"8","min-width-sec":"1","measure":"area","reject-height":"0.01"},
     "lenient": {"noise-mode":"pre","noise-window":"0.5","snr":"1.5","smooth":"5","min-width-sec":"0.5","measure":"area","reject-height":"0"},
-    "strict":  {"noise-mode":"pre","noise-window":"0.3","snr":"3","smooth":"16","min-width-sec":"2","measure":"area","reject-height":"0"},
+    "strict":  {"noise-mode":"pre","noise-window":"0.3","snr":"3","smooth":"16","min-width-sec":"2","measure":"area","reject-height":"0.02"},
 }
 
 DETECT_KEYS = [
     "snr","noise-mode","noise-window","smooth","min-width-sec","measure","reject-height",
-    "runtime","roi-start","roi-end","integrator","percent-denominator",
+    "runtime","roi-start","roi-end","integrator","percent-denominator","noise",
     "clip-negative","baseline-method","tangent-height-pct","split-overlaps",
     "valley-depth-frac","min-prominence","subtract-blank","blank-csv","blank-scale",
     "fill-alpha","fill-color","baseline-lw","baseline-color"
@@ -97,7 +97,7 @@ def collect_detect_cfg(args, cfg, preset):
     # CLI overlays
     cli = {
         "snr":args.snr,"noise-mode":args.noise_mode,"noise-window":args.noise_window,"smooth":args.smooth,
-        "min-width-sec":args.min_width_sec,"measure":args.measure,"reject-height":args.reject_height,
+        "min-width-sec":args.min_width_sec,"measure":args.measure,"reject-height":args.reject_height,"noise":args.noise,
         "runtime":args.runtime,"roi-start":args.roi_start,"roi-end":args.roi_end,"integrator":args.integrator,
         "percent-denominator":args.percent_denominator,"clip-negative":args.clip_negative,
         "baseline-method":args.baseline_method,"tangent-height-pct":args.tangent_height_pct,
@@ -151,6 +151,7 @@ def main():
     ap.add_argument("--snr", type=float, default=None)
     ap.add_argument("--noise-mode", choices=["fixed","start","pre"], default=None)
     ap.add_argument("--noise-window", type=float, default=None)
+    ap.add_argument("--noise", type=float, default=None)
     ap.add_argument("--smooth", type=int, default=None)
     ap.add_argument("--min-width-sec", type=float, default=None)
     ap.add_argument("--measure", choices=["area","height","sqrt_height"], default=None)
@@ -171,10 +172,11 @@ def main():
     ap.add_argument("--blank-scale", type=float, default=None)
     ap.add_argument("--fill-alpha", type=float, default=None)
     ap.add_argument("--fill-color", default=None)
-    ap.add_argument("--baseline-lw", type=float, default=None)
-    ap.add_argument("--baseline-color", default=None)
+    ap.add_argument("--baseline-lw", type=float, default=0.5, help="Baseline line width (default: 0.5)")
+    ap.add_argument("--baseline-color", default="orange", help="Baseline color (default: orange)")
 
     # pass-through handles
+    ap.add_argument("--chrom-lw", type=float, default=0.75, help="Chromatogram line width (default: 0.75)")
     ap.add_argument("--process", default="", help="extra args for scripts/cdf14.py")
     ap.add_argument("--detect",  default="", help="extra args for scripts/cdf13_post3.py (appended after built flags)")
     ap.add_argument("--report",  default="", help="extra args for scripts/cdf13_report2.py")
@@ -213,7 +215,10 @@ def main():
         else: print("DRY-RUN:", " ".join(shlex.quote(x) for x in cmd2))
 
         # 3) cdf13_report2.py
-        cmd3 = [py, REPORT, cdf_arg] + (shlex.split(args.report) if args.report else [])
+        report_argv = []
+        if args.report: report_argv += shlex.split(args.report)
+        if args.chrom_lw is not None: report_argv += ["--chrom-lw", str(args.chrom_lw)]
+        cmd3 = [py, REPORT, cdf_arg] + report_argv
         print(f"=== {base}: step 3/3 ===")
         if not args.dry_run: run(cmd3)
         else: print("DRY-RUN:", " ".join(shlex.quote(x) for x in cmd3))

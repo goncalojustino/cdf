@@ -185,6 +185,7 @@ def main():
     ap.add_argument("--peaks", help="Peaks CSV path; default <base>_peaks.csv")
     ap.add_argument("--out", help="Output DOCX; default <base>_report.docx")
     ap.add_argument("--margin-mm", type=float, default=20.0, help="Page margins in mm; default 20")
+    ap.add_argument("--chrom-lw", type=float, help="Chromatogram line width (ignored, for compatibility)")
     args = ap.parse_args()
 
     img_path, peaks_path, out_path = infer_paths(args.cdf, args.img, args.peaks, args.out)
